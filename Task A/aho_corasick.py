@@ -1,8 +1,10 @@
-# Based on code from:
-# https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py
+"""
+Based on code from:
+https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hull.py
 
-# Licensed under the MIT License.
-# See THIRD-PARTY-NOTICES for the full license text.
+Licensed under the MIT License.
+See THIRD-PARTY-NOTICES for the full license text.
+"""
 
 from __future__ import annotations
 

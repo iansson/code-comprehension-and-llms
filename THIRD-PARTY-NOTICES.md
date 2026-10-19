@@ -1,5 +1,7 @@
-Third-party component: Task A/aho_corasick.py
-Source: https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py
+Third-party component: 
+  - "Task A/aho_corasick.py"
+  - "Task B/convex_hull.py"
+Source: https://github.com/TheAlgorithms/Python/
 License: MIT
 
 MIT License
