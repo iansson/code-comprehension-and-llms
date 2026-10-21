@@ -81,12 +81,19 @@ class Automaton:
         result: dict = {}  # returns a dict with keywords and list of its occurrences
         current_state = 0
         for i in range(len(string)):
+            next_state = None
+            for state in self.adlist[current_state]["next_states"]:
+                if string[i] == self.adlist[state]["value"]:
+                    next_state = state
             while (
-                self.find_next_state(current_state, string[i]) is None
+                next_state is None
                 and current_state != 0
             ):
                 current_state = self.adlist[current_state]["fail_state"]
-            next_state = self.find_next_state(current_state, string[i])
+            next_state = None
+            for state in self.adlist[current_state]["next_states"]:
+                if string[i] == self.adlist[state]["value"]:
+                    next_state = state
             if next_state is None:
                 current_state = 0
             else:
