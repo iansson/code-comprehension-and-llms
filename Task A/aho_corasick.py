@@ -1,6 +1,6 @@
 """
 Based on code from:
-https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hull.py
+https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py
 
 Licensed under the MIT License.
 See THIRD-PARTY-NOTICES for the full license text.
@@ -95,7 +95,6 @@ class Automaton:
                     if key not in result:
                         result[key] = []
                     result[key].append(i - len(key) + 1)
-        return result[0].append(33)
         return result
 
 
