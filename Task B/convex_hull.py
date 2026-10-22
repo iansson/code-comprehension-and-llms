@@ -4,9 +4,7 @@ https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hu
 
 Licensed under the MIT License.
 See THIRD-PARTY-NOTICES for the full license text.
-"""
 
-"""
 The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
 inside P. TH convex hull problem has several applications in geometrical problems,
@@ -15,12 +13,7 @@ computer graphics and game development.
 Two algorithms have been implemented for the convex hull problem here.
 1. A brute-force algorithm which runs in O(n^3)
 2. A divide-and-conquer algorithm which runs in O(n log(n))
-
-There are other several other algorithms for the convex hull problem
-which have not been implemented here, yet.
-
 """
-
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -276,27 +269,23 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
             ij_part_of_convex_hull = True
             for k in range(n):
                 if k not in {i, j}:
-                    det_k = _det(points[i], points[j], points[k])
-
-                    if det_k > 0:
-                        points_left_of_ij = True
-                    elif det_k < 0:
-                        points_right_of_ij = True
-                    # point[i], point[j], point[k] all lie on a straight line
-                    # if point[k] is to the left of point[i] or it's to the
-                    # right of point[j], then point[i], point[j] cannot be
-                    # part of the convex hull of A
-                    elif points[k] < points[i] or points[k] > points[j]:
+                    det_k = (points[i].x * points[j].y + points[j].x * points[k].y + points[k].x * points[i].y) - \
+                        (points[i].y * points[j].x + points[j].y * points[k].x + points[k].y * points[i].x)
+                    # CORRECT: This check should come after the other two
+                    if points[k] < points[i] or points[k] > points[j]:
                         ij_part_of_convex_hull = False
-                        break
-
+                        # CORRECT: break
+                    elif det_k > 0:
+                        points_left_of_ij = True
+                    # CORRECT: elif det_k < 0:
+                    else:
+                        # CORRECT: points_right_of_ij = True
+                        points_left_of_ij = False 
                 if points_left_of_ij and points_right_of_ij:
                     ij_part_of_convex_hull = False
                     break
-
             if ij_part_of_convex_hull:
                 convex_set.update([points[i], points[j]])
-
     return sorted(convex_set)
 
 
@@ -434,6 +423,9 @@ def main() -> None:
     assert results_bf == results_recursive
 
     print(results_bf)
+    
+    import doctest
+    doctest.testmod()
 
 
 if __name__ == "__main__":

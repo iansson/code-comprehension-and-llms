@@ -85,13 +85,18 @@ class Automaton:
             for state in self.adlist[current_state]["next_states"]:
                 if string[i] == self.adlist[state]["value"]:
                     next_state = state
-            while (
-                next_state is None
-                and current_state != 0
-            ):
+            
+            # CORRECT: while ( next_state is None and current_state != 0 ): 
+            # CORRECT:     current_state = self.adlist[current_state]["fail_state"]
+            # I.e. we don't go to the fail_state even when we have a match. 
+            
+            while ( next_state is None and current_state != 0 ): 
                 current_state = self.adlist[current_state]["fail_state"]
+            
+            # current_state = self.adlist[current_state]["fail_state"]
             next_state = None
             for state in self.adlist[current_state]["next_states"]:
+                # CORRECT: if string[i] == self.adlist[state]["value"]:
                 if string[i] == self.adlist[state]["value"]:
                     next_state = state
             if next_state is None:
@@ -99,9 +104,11 @@ class Automaton:
             else:
                 current_state = next_state
                 for key in self.adlist[current_state]["output"]:
-                    if key not in result:
-                        result[key] = []
-                    result[key].append(i - len(key) + 1)
+                    # CORRECT: if key not in result:
+                    # CORRECT:     result[key] = []
+                    # CORRECT: remove the if statement, but keep the content
+                    if key in result:
+                        result[key].append(i - len(key) + 1)
         return result
 
 
