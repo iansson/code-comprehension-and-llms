@@ -282,9 +282,9 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
                         ij_part_of_convex_hull = False
                         break
 
-                if points_left_of_ij and points_right_of_ij:
-                    ij_part_of_convex_hull = False
-                    break
+                    if points_left_of_ij and points_right_of_ij:
+                        ij_part_of_convex_hull = False
+                        break
 
             if ij_part_of_convex_hull:
                 convex_set.update([points[i], points[j]])
