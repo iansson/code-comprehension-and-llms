@@ -94,3 +94,8 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    
+    A = Automaton(["ab", "bc", "cd"])
+    print(A.adlist)
+    print(A.search_in("abc"))
+    

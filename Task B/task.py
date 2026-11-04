@@ -499,12 +499,10 @@ def main() -> None:
     # the convex set of points is
     # [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
     results_bf = convex_hull_bf(points)
-
-    results_recursive = convex_hull_recursive(points)
-    assert results_bf == results_recursive
-
-    results_melkman = convex_hull_melkman(points)
-    assert results_bf == results_melkman
+    
+    import doctest
+    
+    doctest.testmod()
 
     print(results_bf)
 

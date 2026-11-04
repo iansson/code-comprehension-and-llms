@@ -500,6 +500,8 @@ def main() -> None:
     assert results_bf == results_melkman
 
     print(results_bf)
+    
+    print(convex_hull_bf([[0, 0], [0,3], [3, 3], [3, 0], [1, 1]]))
 
 
 if __name__ == "__main__":
